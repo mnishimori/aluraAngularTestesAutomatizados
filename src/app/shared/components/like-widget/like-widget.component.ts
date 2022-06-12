@@ -1,28 +1,27 @@
-import { UniqueIdService } from './../../services/unique-id/unique-id.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faThumbsUp, faAd } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 
 @Component({
   selector: 'app-like-widget',
   templateUrl: './like-widget.component.html',
-  styleUrls: ['./like-widget.component.scss']
+  styleUrls: ['like-widget.component.scss']
 })
 export class LikeWidgetComponent implements OnInit {
-
   @Output() public liked = new EventEmitter<void>();
   @Input() public likes = 0;
   @Input() public id: string = null;
-  public fonts = { faThumbsUp };
+  public fonts  = { faThumbsUp };
 
-  constructor(private uniqueIdService: UniqueIdService) { }
+  constructor(private uniqueIdService: UniqueIdService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (!this.id) {
       this.id = this.uniqueIdService.generateUniqueIdWithPrefix('like-widget');
     }
   }
 
-  like(): void {
+  public like(): void {
     this.liked.emit();
   }
 

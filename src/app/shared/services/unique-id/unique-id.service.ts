@@ -8,28 +8,20 @@ export class UniqueIdService {
 
   private validId = /^[A-Za-z]+[\w\-\:\.]*$/;
 
-  constructor() { }
-
   public generateUniqueIdWithPrefix(prefix: string): string {
-
     if (!prefix || !this.validId.test(prefix)) {
-      throw Error('Prefix cannot be empty');
+      throw Error('Prefix can not be empty');
     }
-
     const uniqueId = this.generateUniqueId();
-
     this.numberOfGeneratedIds++;
-
     return `${prefix}-${uniqueId}`;
   }
 
   public getNumberOfGeneratedUniqueIds(): number {
-
     return this.numberOfGeneratedIds;
   }
 
   private generateUniqueId(): string {
-
     return uuidv4();
   }
 }
