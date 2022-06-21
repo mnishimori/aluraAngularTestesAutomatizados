@@ -24,12 +24,7 @@ describe(PhotoListComponent.name, () => {
     service = TestBed.inject(PhotoBoardService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it(`(D) Should display board when data arrives`, () => {
-    fixture.detectChanges();
     const photos = buildPhotoList();
     spyOn(service, 'getPhotos')
       .and.returnValue(of(photos));
